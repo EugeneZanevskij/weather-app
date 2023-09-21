@@ -1,6 +1,6 @@
 .container {
   width: 40rem;
-  height: 50rem;  
+  padding-bottom: 3rem; 
   margin: auto;
   margin-top: 75px; 
   border-radius: 12px;
@@ -36,4 +36,51 @@
   border-radius: 50%;
   background-color: #d1beef;
   cursor: pointer;
+}
+
+.weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.weather-image img {
+  width: 6rem;
+}
+
+.weather-temp {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.weather-location {
+  font-size: 2.5rem;
+  color: #ffffff;
+}
+
+.weather-details {
+  margin-top: 2rem;
+  display: flex;
+  gap: 8rem;
+  align-items: center;
+  color: #ffffff;
+}
+
+.weather-details-item {
+  margin: auto;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.data__info {
+  font-size: 1.5rem;
+}
+
+.title {
+  font-size: 5rem;
+  color: #d5ee5a;
+  text-align: center;
+  margin-top: 5rem;
 }

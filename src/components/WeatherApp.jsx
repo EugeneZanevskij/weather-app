@@ -1,23 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./WeatherApp.css";
-import clear_icon from "../assets/clear.png";
-import cloud_icon from "../assets/cloud.png";
-import rain_icon from "../assets/rain.png";
-import drizzle_icon from "../assets/drizzle.png";
-import humidity_icon from "../assets/humidity.png";
-import wind_icon from "../assets/wind.png";
 import search_icon from "../assets/search.png";
-import snow_icon from "../assets/snow.png";
+
+import { fetchWeather } from '../api.js';
+import { Weather } from './Weather';
 
 export const WeatherApp = () => {
+  const [city, setCity] = useState('');
+  const [data, setData] = useState({});
   return (
     <div className="container">
       <div className="top-bar">
-        <input type="text" className="cityInput" placeholder='Enter a city'/>
-        <div className="search-icon">
+        <input 
+          type="text" 
+          className="cityInput" 
+          placeholder="Enter a city" 
+          value={city}
+          onChange={(e) => {setCity(e.target.value); console.log(city); console.log(data);}}
+        />
+        <div 
+          className="search-icon" 
+          onClick={() => {
+            fetchWeather(city)
+              .then((result) => {
+                setData(result);
+                setCity('');
+              })
+              .catch((error) => {
+                console.log(error); // Handle the error as needed
+              });
+          }}>
           <img src={search_icon} alt="" />
         </div>
       </div>
+      {data.main ? <Weather data={data} /> : <h1 className="title">Weather app</h1> }
     </div>
-  )
+  );
 }
